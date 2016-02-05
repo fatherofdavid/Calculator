@@ -10,4 +10,4 @@ public class Calculator5Main {
     }
 }
 
-//Christ has died, Christ has risen, Christ will come again
+//Christ has died, Christ has risen, Christ will come again.

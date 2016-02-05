@@ -1,22 +1,27 @@
 package com.annapolisworks;
 
 public class OpNode {
-    public OpNode mLastNode;
-    public OpNode mNextNode;
-    public Operator mOperator;
-    public double mLastNumber;
-    public double mNextNumber;
+
+    public OpNode lastNode;
+    public OpNode nextNode;
+    public Operator operator;
+    public double lastNumber;
+    public double nextNumber;
 
 
     //constructor
-    OpNode(OpNode lastNode, OpNode nextNode, Operator operator, double lastNumber, double nextNumber) {
-        OpNode mLastNode = lastNode;
-        OpNode mNextNode = nextNode;
-        Operator mOperator = operator;
-        mLastNumber = lastNumber;
-        mNextNumber = nextNumber;
-
+    OpNode(OpNode myLastNode, OpNode myNextNode, Operator myOperator, double myLastNumber, double myNextNumber) {
+        lastNode = myLastNode;
+        nextNode = myNextNode;
+        operator = myOperator;
+        lastNumber = myLastNumber;
+        nextNumber = myNextNumber;
     }
     //need get/set functionality
     //need fxn to simplify and annex next node;
+
+    @Override public String toString() {
+        return Double.toString(lastNumber)+","+operator.toString()+","+Double.toString(nextNumber);
+    }
+
 }

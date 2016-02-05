@@ -38,6 +38,10 @@ public enum Operator {
         return false;
     }
 
+    @Override public String toString() {
+        return ""+mOper;
+    }
+
 }
 
 //still not quite sure how to CALL this guy
