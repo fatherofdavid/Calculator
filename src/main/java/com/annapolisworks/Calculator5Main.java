@@ -6,7 +6,7 @@ public class Calculator5Main {
         String userInputStr = "1 + 2^2 * 3 -5";
         Expression myExpression = new Expression(userInputStr);
         double solution = myExpression.getValue();
-        System.out.println(userInputStr + " = " +solution);
+        System.out.println(userInputStr + " = " + solution);
     }
 }
 

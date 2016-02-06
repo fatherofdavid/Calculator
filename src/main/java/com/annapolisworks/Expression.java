@@ -2,7 +2,7 @@ package com.annapolisworks;
 
 public class Expression {
 
-    String mExpr;
+    private String mExpr;
     Expression(String expr) {
         mExpr = expr;
     }
@@ -32,7 +32,7 @@ public class Expression {
                 }
                 thisNode = thisNode.nextNode;
             }
-        }while(firstNode.nextNode != null);
+        }while (firstNode.nextNode != null) ;
         firstNode.simplifyAndCollapse();
         return firstNode.lastNumber;
     }

@@ -3,12 +3,10 @@ package com.annapolisworks;
 public class ExpressionParser {
 
     private int mIndex;
-    char c;
-    double firstNumber;
-    double secondNumber;
-    Operator thisOperator;
-    OpNode firstNode;
-    OpNode thisNode;
+    private char c;
+    private double secondNumber;
+    private OpNode firstNode;
+    private OpNode thisNode;
     private String expr;
 
     public OpNode parse(String expressionToParse) {
@@ -17,11 +15,11 @@ public class ExpressionParser {
 
         expr = expressionToParse;
         //create a 0+? first node to be overwritten Or in case user enters a single number
-        thisOperator = Operator.makeOperator('+');
-        firstNumber = 0d;
+        Operator thisOperator = Operator.makeOperator('+');
+        double firstNumber = 0d;
 
         mIndex = 0;
-        while(mIndex < expr.length()){
+        while (mIndex < expr.length()){
             c = expr.charAt(mIndex);
 
             if (Character.isSpaceChar(c)) {
@@ -29,12 +27,12 @@ public class ExpressionParser {
             } else if (Character.isDigit(c) || c == '.') {
                 firstNumber = secondNumber;
                 secondNumber = parseNumber();
-                thisNode = new OpNode(thisNode,null,thisOperator,firstNumber,secondNumber);
-                if(firstNode != null) {
+                thisNode = new OpNode(thisNode, null, thisOperator, firstNumber, secondNumber);
+                if (firstNode != null) {
                     thisNode.lastNode.nextNode = thisNode;
                 }
                 thisOperator = null;
-                if(firstNode == null) {
+                if (firstNode == null) {
                     firstNode = thisNode;
                 }
             } else if (Operator.isOperator(c) && thisOperator == null) {
@@ -50,7 +48,7 @@ public class ExpressionParser {
 
     public double parseNumber() {
         StringBuilder sb = new StringBuilder();
-        while(mIndex < expr.length()) {
+        while (mIndex < expr.length()) {
             c = expr.charAt(mIndex);
             if (Character.isDigit(c) || c == '.') {
                 c = expr.charAt(mIndex);
