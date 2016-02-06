@@ -3,7 +3,7 @@ package com.annapolisworks;
 public class Expression {
 
     private String mExpr;
-    Expression(String expr) {
+    public Expression(String expr) {
         mExpr = expr;
     }
 
@@ -15,14 +15,14 @@ public class Expression {
         do {
             thisNode = firstNode;
             highestPriority = 0;
-            while (thisNode.nextNode != null) {
+            while (thisNode != null) {
                 if (thisNode.operator.getPriority() > highestPriority) {
                     highestPriority = thisNode.operator.getPriority();
                 }
                 thisNode = thisNode.nextNode;
             }
             thisNode = firstNode;
-            while (thisNode.nextNode != null) {
+            while (thisNode != null) {
                 if (thisNode.operator.getPriority() == highestPriority) {
                     thisNode.simplifyAndCollapse();
                     if(thisNode == firstNode) {
