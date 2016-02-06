@@ -3,14 +3,37 @@ package com.annapolisworks;
 public class Expression {
 
     String mExpr;
-    //constructor:
     Expression(String expr) {
         mExpr = expr;
     }
 
-
-    //actual solving performed in here
     public double getValue() {
-        return 0d;
+        ExpressionParser myParser = new ExpressionParser();
+        OpNode firstNode = myParser.parse(mExpr);
+        OpNode thisNode;
+        int highestPriority;
+        do {
+            thisNode = firstNode;
+            highestPriority = 0;
+            while (thisNode.nextNode != null) {
+                if (thisNode.operator.getPriority() > highestPriority) {
+                    highestPriority = thisNode.operator.getPriority();
+                }
+                thisNode = thisNode.nextNode;
+            }
+            thisNode = firstNode;
+            while (thisNode.nextNode != null) {
+                if (thisNode.operator.getPriority() == highestPriority) {
+                    thisNode.simplifyAndCollapse();
+                    if(thisNode == firstNode) {
+                        firstNode = firstNode.nextNode;
+                    }
+                    break;
+                }
+                thisNode = thisNode.nextNode;
+            }
+        }while(firstNode.nextNode != null);
+        firstNode.simplifyAndCollapse();
+        return firstNode.lastNumber;
     }
 }

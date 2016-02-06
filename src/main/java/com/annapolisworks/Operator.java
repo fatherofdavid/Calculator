@@ -1,11 +1,31 @@
 package com.annapolisworks;
 
-public enum Operator {
-    PLUS('+', 1),
-    MINUS('-', 1),
-    MULTIPLY('*', 2),
-    DIVIDE('/', 2),
-    EXPONENT('^', 3);
+public enum Operator{
+    PLUS('+', 1){
+        @Override public double performOperation(double val1, double val2){
+            return (val1 + val2);
+        }
+    },
+    MINUS('-', 1){
+        @Override public double performOperation(double val1, double val2){
+            return (val1 - val2);
+        }
+    },
+    MULTIPLY('*', 2){
+        @Override public double performOperation(double val1, double val2){
+            return (val1 * val2);
+        }
+    },
+    DIVIDE('/', 2){
+        @Override public double performOperation(double val1, double val2){
+            return (val1 / val2);
+        }
+    },
+    EXPONENT('^', 3){
+        @Override public double performOperation(double val1, double val2){
+            return Math.pow(val1,val2);
+        }
+    };
 
     private char mOper;
     private int mPriority;
@@ -18,6 +38,7 @@ public enum Operator {
     char getOper() {
         return mOper;
     }
+    int getPriority() {return mPriority;}
 
 
     static Operator makeOperator(char c) {
@@ -36,6 +57,10 @@ public enum Operator {
             }
         }
         return false;
+    }
+
+    public double performOperation(double val1, double val2){
+        throw new RuntimeException("Error in Operator Enum.");
     }
 
     @Override public String toString() {
